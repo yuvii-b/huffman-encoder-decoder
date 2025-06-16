@@ -73,3 +73,26 @@ std::string HuffmanCoder::decode(const std::string &codedStr){
 	return ans;
 }
 
+void HuffmanCoder::calculateCompressionStats(const std::string &original, const std::string &compressed) {
+    if (original.empty()) {
+        std::cerr << "Error: Original text is empty. Cannot compute compression statistics.\n";
+        return;
+    }
+
+    size_t originalSizeBits = original.size() * 8;
+    size_t compressedSizeBits = compressed.size();
+    size_t compressedSizeBytes = (compressedSizeBits + 7) / 8;
+
+    double compressionRatio = (originalSizeBits == 0) ? 0.0 : (double)compressedSizeBits / originalSizeBits;
+    double spaceSavings = (1.0 - compressionRatio) * 100;
+
+    std::cout << "\nString Compression Statistics:\n";
+    std::cout << "Original text: " << original << "\n";
+    std::cout << "Encoded (Huffman): " << compressed << "\n";
+    std::cout << "Original Size: " << originalSizeBits << " bits (" << original.size() << " bytes)\n";
+    std::cout << "Compressed Size: " << compressedSizeBits << " bits (" << compressedSizeBytes << " bytes)\n";
+    std::cout << "Compression Ratio: " << compressionRatio << "\n";
+    std::cout << "Percentage Compression: " << compressionRatio * 100 << "%\n";
+    std::cout << "Space Savings: " << spaceSavings << "%\n";
+}
+

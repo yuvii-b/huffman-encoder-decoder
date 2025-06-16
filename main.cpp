@@ -12,6 +12,7 @@ int main(int argc, char* argv[]){
     std::cout << "Encoded: "  << encoded  << std::endl;
 	std::string decoded = huff->decode(encoded);
 	std::cout << "Decoded: "  << decoded << std::endl;
+	huff->calculateCompressionStats(text, encoded);
 	delete huff;
 	return 0;
 }
